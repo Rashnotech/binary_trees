@@ -14,14 +14,8 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 	if (!node)
 		return (NULL);
 	node->n = value;
+	node->parent = parent;
 	node->left = NULL;
 	node->right = NULL;
-	if (parent)
-	{
-		if (value <= parent->n)
-			parent->left = node;
-		else
-			parent->right = node;
-	}
 	return (node);
 }
