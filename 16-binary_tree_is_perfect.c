@@ -7,11 +7,26 @@
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int h_r, h_l;
+	int size;
 
 	if (!tree)
 		return (0);
-	h_r = tree->right ? 1 + binary_tree_is_perfect(tree->right) : 0;
-	h_l = tree->left ? 1 + binary_tree_is_perfect(tree->left) : 0;
-	return (h_l == h_r ? 1 : 0);
+	size = binary_tree_size(tree);
+	if (size & (size + 1))
+		return (0);
+	return (1);
+}
+
+
+/**
+ * binary_tree_size - Measures the size of a binary tree.
+ * @tree: A pointer to the root node of the tree.
+ *
+ * Return: The size of the tree. If tree is NULL, return 0.
+ */
+size_t binary_tree_size(const binary_tree_t *tree)
+{
+	if (tree == NULL)
+		return (0);
+	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
